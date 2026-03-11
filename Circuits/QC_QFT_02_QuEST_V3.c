@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "quest.h"
+#include "QuEST.h"
 #include "myFunctions.c"
 #include <time.h>
 
@@ -13,26 +13,25 @@ int main (int narg, char *varg[]) {
 	timePath = varg[1];
 	resultPath = varg[2];
 	numThreads = varg[3];
+	
 
 	struct timespec start, finish;
 	qreal elapsed;
 
 	// PREPARE QuEST environment
-	initQuESTEnv();
+	QuESTEnv env = createQuESTEnv();
 
 	// PREPARE QUBIT SYSTEM
 	int numQubits = 2;
-	if (numQubits < 4)
-		reportQuESTEnv();
-	Qureg qubits = createQureg(numQubits);
+	Qureg qubits = createQureg(numQubits, env);
 	initZeroState(qubits);
 
 	//APPLY CIRCUIT
 	clock_gettime(CLOCK_MONOTONIC, &start);
 
-	applyHadamard(qubits, 0);
-	applyTwoQubitPhaseShift(qubits, 1, 0, 1.5707963267948966);
-	applyHadamard(qubits, 1);
+	hadamard(qubits, 0);
+	controlledPhaseShift(qubits, 1, 0, 1.5707963267948966);
+	hadamard(qubits, 1);
 
 
 	clock_gettime(CLOCK_MONOTONIC, &finish);
@@ -43,7 +42,7 @@ int main (int narg, char *varg[]) {
 	// STUDY QUANTUM STATE        
 	// print_stateVec(qubits, "Circuit");
 
-	char dynamicFileName[] = "_QC_QFT_02_QuEST_V4.csv";
+	char dynamicFileName[] = "_QC_QFT_02_QuEST_V3.csv";
 	snprintf(timeFullPath, sizeof(timeFullPath), "%s%s%s%s", timePath, "RunTime_NumThreads_", numThreads, dynamicFileName);
 	snprintf(resultFullPath, sizeof(resultFullPath), "%s%s%s", resultPath, "Results", dynamicFileName);
 	
@@ -53,9 +52,9 @@ int main (int narg, char *varg[]) {
 
 
 	// FREE MEMORY
-	destroyQureg(qubits); 
+	destroyQureg(qubits, env); 
 
 	// CLOSE QUEST ENVIRONMET
-	finalizeQuESTEnv();
+	destroyQuESTEnv(env);
 	return 0;
 }

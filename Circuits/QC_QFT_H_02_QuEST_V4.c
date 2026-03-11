@@ -30,6 +30,7 @@ int main (int narg, char *varg[]) {
 	//APPLY CIRCUIT
 	clock_gettime(CLOCK_MONOTONIC, &start);
 
+	applyHadamard(qubits, 1);
 	applyHadamard(qubits, 0);
 	applyTwoQubitPhaseShift(qubits, 1, 0, 1.5707963267948966);
 	applyHadamard(qubits, 1);
@@ -43,7 +44,7 @@ int main (int narg, char *varg[]) {
 	// STUDY QUANTUM STATE        
 	// print_stateVec(qubits, "Circuit");
 
-	char dynamicFileName[] = "_QC_QFT_02_QuEST_V4.csv";
+	char dynamicFileName[] = "_QC_QFT_H_02_QuEST_V4.csv";
 	snprintf(timeFullPath, sizeof(timeFullPath), "%s%s%s%s", timePath, "RunTime_NumThreads_", numThreads, dynamicFileName);
 	snprintf(resultFullPath, sizeof(resultFullPath), "%s%s%s", resultPath, "Results", dynamicFileName);
 	

@@ -21,7 +21,7 @@ int main (int narg, char *varg[]) {
 	initQuESTEnv();
 
 	// PREPARE QUBIT SYSTEM
-	int numQubits = 2;
+	int numQubits = 6;
 	if (numQubits < 4)
 		reportQuESTEnv();
 	Qureg qubits = createQureg(numQubits);
@@ -30,9 +30,32 @@ int main (int narg, char *varg[]) {
 	//APPLY CIRCUIT
 	clock_gettime(CLOCK_MONOTONIC, &start);
 
+	applyHadamard(qubits, 1);
+	applyHadamard(qubits, 2);
+	applyHadamard(qubits, 3);
+	applyHadamard(qubits, 4);
+	applyHadamard(qubits, 5);
 	applyHadamard(qubits, 0);
 	applyTwoQubitPhaseShift(qubits, 1, 0, 1.5707963267948966);
+	applyTwoQubitPhaseShift(qubits, 2, 0, 0.7853981633974483);
+	applyTwoQubitPhaseShift(qubits, 3, 0, 0.39269908169872414);
+	applyTwoQubitPhaseShift(qubits, 4, 0, 0.19634954084936207);
+	applyTwoQubitPhaseShift(qubits, 5, 0, 0.09817477042468103);
 	applyHadamard(qubits, 1);
+	applyTwoQubitPhaseShift(qubits, 2, 1, 1.5707963267948966);
+	applyTwoQubitPhaseShift(qubits, 3, 1, 0.7853981633974483);
+	applyTwoQubitPhaseShift(qubits, 4, 1, 0.39269908169872414);
+	applyTwoQubitPhaseShift(qubits, 5, 1, 0.19634954084936207);
+	applyHadamard(qubits, 2);
+	applyTwoQubitPhaseShift(qubits, 3, 2, 1.5707963267948966);
+	applyTwoQubitPhaseShift(qubits, 4, 2, 0.7853981633974483);
+	applyTwoQubitPhaseShift(qubits, 5, 2, 0.39269908169872414);
+	applyHadamard(qubits, 3);
+	applyTwoQubitPhaseShift(qubits, 4, 3, 1.5707963267948966);
+	applyTwoQubitPhaseShift(qubits, 5, 3, 0.7853981633974483);
+	applyHadamard(qubits, 4);
+	applyTwoQubitPhaseShift(qubits, 5, 4, 1.5707963267948966);
+	applyHadamard(qubits, 5);
 
 
 	clock_gettime(CLOCK_MONOTONIC, &finish);
@@ -43,7 +66,7 @@ int main (int narg, char *varg[]) {
 	// STUDY QUANTUM STATE        
 	// print_stateVec(qubits, "Circuit");
 
-	char dynamicFileName[] = "_QC_QFT_02_QuEST_V4.csv";
+	char dynamicFileName[] = "_QC_QFT_H_06_QuEST_V4.csv";
 	snprintf(timeFullPath, sizeof(timeFullPath), "%s%s%s%s", timePath, "RunTime_NumThreads_", numThreads, dynamicFileName);
 	snprintf(resultFullPath, sizeof(resultFullPath), "%s%s%s", resultPath, "Results", dynamicFileName);
 	

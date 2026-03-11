@@ -9,16 +9,10 @@ int main (int narg, char *varg[]) {
 	const char *timePath;
 	const char *resultPath;
 	const char *numThreads;
-	if (narg != 4) {
-		timePath = "/home/meisam/Workspace/miniquest/LFQS/Results/csvFiles/";
-		resultPath = "/home/meisam/Workspace/miniquest/LFQS/Results/CompareCSVFiles/csvFiles/";
-		numThreads = "0";
-	}
-	else {
-		timePath = varg[1];
-		resultPath = varg[2];
-		numThreads = varg[3];
-	}
+	
+	timePath = varg[1];
+	resultPath = varg[2];
+	numThreads = varg[3];
 
 	struct timespec start, finish;
 	qreal elapsed;
