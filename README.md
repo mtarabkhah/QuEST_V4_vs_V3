@@ -17,5 +17,6 @@ The current configuration:
 * Runs the simulation on the CPU using **8 threads**
 * Simulates two circuits: `QFT` and `QFT_H`
     * `QFT_H` is similar to `QFT` but adds Hadamard gates to all qubits at the start of the circuit
+    * Circuits for each version are placed inside the `QuEST/Benchmarking` directory. A copy of the circuits is available in the `Circuits` directory for easier side-by-side comparison.
 * Runs each circuit with different numbers of qubits (from **2 to 20**)
 * Uses **5 warm-up iterations**, then **averages** the simulation time over the **next 5 iterations**
