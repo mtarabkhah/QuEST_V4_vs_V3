@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/demo.dir/QC_QFT_H_20_QuEST_V3.c.o -o demo  -Wl,-rpath,/home/meisam/QuESTV3_V4/QuEST_V3/QuEST/Benchmarking/QuEST QuEST/libQuEST.so -lm /usr/lib/gcc/x86_64-linux-gnu/13/libgomp.so /usr/lib/x86_64-linux-gnu/libpthread.a 

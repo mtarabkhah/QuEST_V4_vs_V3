@@ -1,0 +1,1 @@
+Average speed-up of QuEST_V4 vs QuEST_V3: 0.46573292055641796

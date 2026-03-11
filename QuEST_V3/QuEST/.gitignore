@@ -1,0 +1,9 @@
+build*/
+**/.DS_Store
+Doxygen_doc/
+
+QuEST_V3/QuEST/Benchmarking/*
+!QuEST_V3/QuEST/Benchmarking/*.c
+
+QuEST_V4/QuEST/Benchmarking/*
+!QuEST_V4/QuEST/Benchmarking/*.c

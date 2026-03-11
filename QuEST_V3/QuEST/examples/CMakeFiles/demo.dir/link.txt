@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/demo.dir/myexample.c.o -o demo  -Wl,-rpath,/home/meisam/Workspace/QuEST/examples/QuEST QuEST/libQuEST.so -lm 
